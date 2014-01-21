@@ -15,6 +15,11 @@ group :assets do
   gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 end
 
+group :test, :development do
+  gem 'minitest-rails'
+  gem "minitest-rails-capybara"
+end
+
 group :doc do
   gem 'sdoc', require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
