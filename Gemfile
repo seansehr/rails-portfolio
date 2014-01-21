@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'rails', '4.0.2' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.0' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'sqlite3' # Use sqlite3 as the database for Active Record
 gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 
@@ -15,7 +15,7 @@ group :assets do
   gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 end
 
-group :test, :development do
+group :development, :test do
   gem 'minitest-rails'
   gem "minitest-rails-capybara"
 end
