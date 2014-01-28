@@ -12,7 +12,7 @@ feature "Editing a Post" do
     click_on "Update Post"
 
     # Then the post is updated
-    page.text.must_have_content "Post was successfully updated"
-    page.text.must_have_content "real gansta"
+    page.text.must_include "Post was successfully updated"
+    page.text.must_include "real gangsta"
   end
 end
