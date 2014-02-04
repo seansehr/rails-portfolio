@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
 group :development, :test do
   gem 'sqlite3' # Use sqlite3 as the database for Active Record, not supported on Heroku
+  gem 'rspec'
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
   gem 'turn'
