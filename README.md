@@ -1,6 +1,6 @@
-Portfolio Site
-====================
+# My Ruby Portfolio Site [![Build Status](https://travis-ci.org/xeraseth/rails-portfolio.png)](https://travis-ci.org/xeraseth/rails-portfolio)
 
-My Portfolio site
+My portfolio site for my Rails class.
 
-![](https://raw.github.com/xeraseth/rails-portfolio/master/tests.png)
+Some cool repos I have made while testing/learning for this site
+* [Foundations with Rails 4 install guide](https://github.com/xeraseth/Foundation-Homework)
