@@ -8,12 +8,11 @@ gem 'turbolinks' # Turbolinks makes following links in your web application fast
 # Gems used only for assets and not required
 # in production environments by default.
 # allow everywhere for now cause we are allowing asset debugging in prd
-group :assets do
-  gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
-  gem 'jquery-rails' # Use jquery as the JavaScript library
-  gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
-  gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
-end
+gem 'jquery-rails', '~> 2.3.0' # Use jquery as the JavaScript library
+gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
+gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
+gem 'foundation-rails' # Use Foundations framework
+gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
 group :development, :test do
   gem 'minitest-rails'
