@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def create
     @project = Project.new(project_params)
@@ -10,6 +10,13 @@ class ProjectsController < ApplicationController
       flash.now[:error] =  "Project could not be saved."
       render :new
     end
+  end
+
+  def destroy
+    project = @project
+    @project.destroy
+    flash[:notice] = "#{project.name} has been deleted."
+    redirect_to projects_url
   end
 
   def edit

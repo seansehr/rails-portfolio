@@ -1,2 +1,5 @@
 <h2><%= @project.name %></h2>
 <p>Technologies used: <%= @project.technologies_used %>
+<div class="actions">
+  <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "button radius" %>
+</div>
