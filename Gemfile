@@ -15,6 +15,7 @@ gem 'foundation-rails' # Use Foundations framework
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
 group :development, :test do
+  gem 'simplecov', :require => false
   gem 'sqlite3' # Use sqlite3 as the database for Active Record, not supported on Heroku
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
