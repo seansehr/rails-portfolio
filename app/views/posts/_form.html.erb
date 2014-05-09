@@ -19,7 +19,7 @@
     <%= f.label :body %><br>
     <%= f.text_area :body %>
   </div>
-  <% if current_user.role == "editor" %>
+  <% if policy(@post).publish? %>
     <div class="field">
       <%= f.label :published %>
       <%= f.check_box :published %>

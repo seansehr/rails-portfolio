@@ -24,8 +24,8 @@
     </tbody>
   </table>
 </div>
-<% if current_user && current_user.role == ("editor" || "author") %>
-  <div class="medium-4 columns"> 
+<% if policy(@posts).create? %>
+  <div class="medium-4 columns">
     <%= link_to 'New Post', new_post_path, class: "button radius" %>
   </div>
 <% end %>
