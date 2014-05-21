@@ -1,0 +1,22 @@
+# Fixture for comment data
+comment1:
+  author: visitor.email
+  author_url: visitor.com
+  author_email: visitor.email
+  user_ip: 127.0.0.1
+  user_agent: IE
+  referrer: place
+  content: comment number 1
+  approved: false
+  post: weeeeeeeee
+
+comment2:
+  author: author.email
+  author_url: author.com
+  author_email: author.email
+  user_ip: 127.0.0.1
+  user_agent: Chrome
+  referrer: other place
+  content: comment number 2
+  approved: true
+  post: weeeeeeeee
