@@ -1,11 +1,9 @@
-class PostPolicy < ApplicationPolicy
+class CommentPolicy < ApplicationPolicy
   class Scope < Struct.new(:user, :scope)
     def resolve
 
       if user && user.editor?
         scope.all
-      elsif user && user.author?
-        scope.where(author: user)
       else
         scope.where(approved: true)
       end
