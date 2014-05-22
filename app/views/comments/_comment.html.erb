@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <% logger = Logger.new('logger.txt')
+  logger.info(instance_variable_names)
+  logger.info(@view_renderer)
+  logger.info(@output_buffer) %>
   <strong>Author:</strong>
   <%= @comment.author %>
 </p>

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140521234701) do
     t.string   "user_ip"
     t.string   "user_agent"
     t.string   "referrer"
-    t.text     "context"
+    t.text     "content"
     t.boolean  "approved"
     t.datetime "created_at"
     t.datetime "updated_at"

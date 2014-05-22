@@ -24,7 +24,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    attrs = [:author, :author_url, :author_email, :user_ip, :user_agent, :referrer, :context]
+    attrs = [:author, :author_url, :author_email, :user_ip, :user_agent, :referrer, :content]
     if user.editor?
       attrs << :approved
     end

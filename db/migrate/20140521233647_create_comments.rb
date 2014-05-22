@@ -7,7 +7,7 @@ class CreateComments < ActiveRecord::Migration
       t.string :user_ip
       t.string :user_agent
       t.string :referrer
-      t.text :context
+      t.text :content
       t.boolean :approved
 
       t.timestamps

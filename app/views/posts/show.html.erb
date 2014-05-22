@@ -16,4 +16,14 @@
 
 <p><%= @post.body %></p>
 
+<h3>Comments</h3>
+
+<% @post.comments.each do |comment| %>
+  <div class="comment">
+    <%= comment.content %>
+  </div>
+  <div class="comment-by">By <span class="comment-author"><%= comment.author %></span></div>
+<% end %>
+
+<h4>Post A Comment</h4>
 <%= render 'comments/form' %>
