@@ -25,6 +25,10 @@ class PostPolicy < ApplicationPolicy
     authenticated? && user.editor?
   end
 
+  def update?
+    authenticated? && user.editor? && user.email == @record.author.email
+  end
+
   def permitted_attributes
     if user.editor?
       [:title, :body, :published]

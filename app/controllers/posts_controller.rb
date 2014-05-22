@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    raise ActionController::RoutingError.new('Not Found') unless (@post.published? || policy(@post).publish?)
   end
 
   # GET /posts/new
