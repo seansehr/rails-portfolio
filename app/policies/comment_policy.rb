@@ -1,7 +1,6 @@
 class CommentPolicy < ApplicationPolicy
   class Scope < Struct.new(:user, :scope)
     def resolve
-
       if user && user.editor?
         scope.all
       else
@@ -23,8 +22,11 @@ class CommentPolicy < ApplicationPolicy
     authenticated? && user.editor?
   end
 
+  alias_method :view?, :publish?
+  alias_method :delete?, :publish?
+
   def permitted_attributes
-    attrs = [:author, :author_url, :author_email, :user_ip, :user_agent, :referrer, :content]
+    attrs = [:content]
     if user.editor?
       attrs << :approved
     end

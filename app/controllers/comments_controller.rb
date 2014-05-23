@@ -1,4 +1,8 @@
 class CommentsController < ApplicationController
+  include Pundit
+  protect_from_forgery
+
+  before_action :authenticate_user!
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments
@@ -19,17 +23,25 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    @post = Post.find(@comment.post_id) unless @post
   end
 
   # POST /comments
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-
+    @comment.author = current_user.email
+    @comment.author_email = current_user.email
+    @comment.user_ip = request.remote_ip
+    @comment.user_agent = request.user_agent
+    @comment.referrer = request.referer
+    @comment.post_id = params[:post_id]
+    @comment.approved = policy(@comment).publish? ? true : false
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @comment }
+        notice = @comment.approved ? 'Comment was successfully created.' : 'Comment was successfully created. It will be published once an editor approves it.'
+        format.html { redirect_to post_path(@comment.post_id), notice: notice }
+        format.json { head :no_content }
       else
         format.html { render action: 'new' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -42,7 +54,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to post_path(@comment.post_id), notice: 'Comment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,7 +68,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      format.html { redirect_to post_path(@comment.post_id) }
       format.json { head :no_content }
     end
   end

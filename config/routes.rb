@@ -9,8 +9,10 @@ PortfolioRails4::Application.routes.draw do
   root 'welcome#index'
 
   resources :posts do
-    resource :comments
+    resources :comments
   end
+
+  put '/posts/:post_id/comment/:id' => 'comments#update'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
