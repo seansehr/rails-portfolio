@@ -23,6 +23,7 @@ end
 
 
 def login(role = :editor)
+  page.driver.submit :delete, destroy_user_session_path, {}
   visit new_user_session_path
   fill_in "Email", with: users(role).email
   fill_in "Password", with: "password"
@@ -30,11 +31,9 @@ def login(role = :editor)
   click_on "Sign in"
 end
 
-def post_comment
+def post_comment(role = :editor)
+  login(role)
   visit post_path(posts(:gangsta))
-  fill_in "Your Name", with: comments(:comment1).author
-  fill_in "Your Website", with: comments(:comment1).author_url
-  fill_in "Your Email", with: comments(:comment1).author_email
   fill_in "Comment", with: comments(:comment1).content
 
   # When I submit the form

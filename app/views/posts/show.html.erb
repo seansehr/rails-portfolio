@@ -26,7 +26,7 @@
     <div class="byline">By <span class="author"><%= com.author %></span></div>
     <ul class="button-group">
     <% if policy(com).publish? && !com.approved %>
-      <li><%= link_to "Publish", post_comment_path(@post, com, comment:{approved: true}), method: :put, :class => 'tiny button' %></li>
+      <li><%= link_to "Approve", post_comment_path(@post, com, comment:{approved: true}), method: :put, :class => 'tiny button' %></li>
     <% end %>
     <% if policy(com).delete? %>
       <li><%= link_to 'Destroy', [@post, com], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'tiny button' %></li>

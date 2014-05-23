@@ -53,8 +53,9 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1.json
   def update
     respond_to do |format|
+      notice = params['comment']['approved'] && !@comment.approved ? 'Comment approved.' : 'Comment was successfully updated.'
       if @comment.update(comment_params)
-        format.html { redirect_to post_path(@comment.post_id), notice: 'Comment was successfully updated.' }
+        format.html { redirect_to post_path(@comment.post_id), notice: notice }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -68,7 +69,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to post_path(@comment.post_id) }
+      format.html { redirect_to post_path(@comment.post_id), notice: 'Comment deleted.' }
       format.json { head :no_content }
     end
   end
