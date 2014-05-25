@@ -8,7 +8,7 @@ comment1:
   referrer: place
   content: comment number 1
   approved: false
-  post: weeeeeeeee
+  commentable: weeeeeeeee (Post)
 
 comment2:
   author: author.email
@@ -19,4 +19,4 @@ comment2:
   referrer: other place
   content: comment number 2
   approved: true
-  post: weeeeeeeee
+  commentable: weeeeeeeee (Post)

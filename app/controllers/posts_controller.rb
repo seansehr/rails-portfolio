@@ -16,6 +16,8 @@ class PostsController < ApplicationController
   def show
     raise ActionController::RoutingError.new('Not Found') unless (@post.published? || policy(@post).publish?)
     @comment = Comment.new
+    @commentable = @post
+    @comments = @commentable.comments
   end
 
   # GET /posts/new
