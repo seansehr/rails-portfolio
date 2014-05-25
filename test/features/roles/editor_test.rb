@@ -18,6 +18,6 @@ feature "Editor Workflow" do
     click_on "Create Post"
 
     # Then the published post should be shown
-    page.text.must_include "Status: Published"
+    page.wont_have_content "Currently Unpublished"
   end
 end

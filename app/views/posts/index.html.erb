@@ -6,19 +6,19 @@
         <th>Title</th>
         <th>Body</th>
         <th></th>
-        <th></th>
-        <th></th>
       </tr>
     </thead>
 
     <tbody>
-      <% @posts.each do |post| %>
+      <% policy_scope(@posts).each do |post| %>
         <tr>
           <td><%= post.title %></td>
           <td><%= post.body %></td>
-          <td><%= link_to 'Show', post %></td>
-          <td><%= link_to 'Edit', edit_post_path(post) %></td>
-          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><ul class="button-group">
+            <li><%= link_to 'Show', post, :class => 'tiny button' %></li>
+            <% if policy(post).update? %><li><%= link_to 'Edit', edit_post_path(post), :class => 'tiny button' %></li><% end %>
+            <% if policy(post).delete? %><li><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'tiny button' %></li><% end %>
+            </ul></td>
         </tr>
       <% end %>
     </tbody>

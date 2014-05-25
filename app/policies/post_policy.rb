@@ -26,8 +26,10 @@ class PostPolicy < ApplicationPolicy
   end
 
   def update?
-    authenticated? && user.editor? && user.email == @record.author.email
+    authenticated? && (user.editor? || user.email == @record.author.email)
   end
+
+  alias_method :delete?, :update?
 
   def permitted_attributes
     if user.editor?

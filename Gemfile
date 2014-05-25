@@ -5,6 +5,8 @@ gem 'rails', '4.0.0' # Bundle edge Rails instead: gem 'rails', github: 'rails/ra
 gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'devise' # User auth
 gem "pundit" # User Permissions
+gem 'omniauth-twitter'
+gem 'figaro' # Save Environment Vars
 
 # Gems used only for assets and not required
 # in production environments by default.

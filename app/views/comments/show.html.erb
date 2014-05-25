@@ -1,0 +1,41 @@
+<% if policy(@comment).view? %>
+  <p>
+    <strong>Author:</strong>
+    <%= @comment.author %>
+  </p>
+
+  <p>
+    <strong>Author url:</strong>
+    <%= @comment.author_url %>
+  </p>
+
+  <p>
+    <strong>Author email:</strong>
+    <%= @comment.author_email %>
+  </p>
+
+  <p>
+    <strong>User ip:</strong>
+    <%= @comment.user_ip %>
+  </p>
+
+  <p>
+    <strong>User agent:</strong>
+    <%= @comment.user_agent %>
+  </p>
+
+  <p>
+    <strong>Referrer:</strong>
+    <%= @comment.referrer %>
+  </p>
+
+  <p>
+    <strong>Content:</strong>
+    <%= @comment.content %>
+  </p>
+
+  <p>
+    <strong>Approved:</strong>
+    <%= @comment.approved %>
+  </p>
+<% end %>

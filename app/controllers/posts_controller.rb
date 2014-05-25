@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  include Pundit
+  protect_from_forgery
+
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
@@ -12,6 +15,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     raise ActionController::RoutingError.new('Not Found') unless (@post.published? || policy(@post).publish?)
+    @comment = Comment.new
   end
 
   # GET /posts/new

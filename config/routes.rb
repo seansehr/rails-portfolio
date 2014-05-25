@@ -1,5 +1,5 @@
 PortfolioRails4::Application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   resources :posts, :projects
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -7,6 +7,12 @@ PortfolioRails4::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+
+  resources :posts do
+    resources :comments
+  end
+
+  # put '/posts/:post_id/comment/:id' => 'comments#update'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

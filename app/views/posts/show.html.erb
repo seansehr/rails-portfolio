@@ -3,15 +3,37 @@
 <% end %>
 
 <h1><%= @post.title %></h1>
-<% if policy(@post).update? %>
-  <%= link_to 'Edit', edit_post_path(@post) %>
-<% end %>
-<% if policy(@post).publish? && !@post.published %>
-  &nbsp;| <%= link_to "Publish", post_path(post:{published: true}), method: :put %>
-<% end %>
+<ul class="button-group">
+  <% if policy(@post).update? %>
+    <li><%= link_to 'Edit', edit_post_path(@post), :class => 'tiny button' %></li>
+  <% end %>
+  <% if policy(@post).publish? && !@post.published %>
+    <li><%= link_to "Publish", post_path(post:{published: true}), method: :put, :class => 'tiny button' %></li>
+  <% end %>
+</ul>
 
-<p id="author">
+<p class="byline">
   Written by <span class="author"><%= @post.author.email %></span>
 </p>
 
 <p><%= @post.body %></p>
+
+<h3>Comments</h3>
+
+<% policy_scope(@post.comments).each do |com| %>
+  <div class="comment">
+    <%= com.content %>
+    <div class="byline">By <span class="author"><%= com.author %></span></div>
+    <ul class="button-group">
+    <% if policy(com).publish? && !com.approved %>
+      <li><%= link_to "Approve", post_comment_path(@post, com, comment:{approved: true}), method: :put, :class => 'tiny button' %></li>
+    <% end %>
+    <% if policy(com).delete? %>
+      <li><%= link_to 'Destroy', [@post, com], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'tiny button' %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h4>Post A Comment</h4>
+<%= render 'comments/form' %>
