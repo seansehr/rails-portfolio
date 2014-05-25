@@ -7,7 +7,7 @@ feature "Approving a comment" do
     visit post_path(posts(:gangsta))
 
     click_on "Approve"
-    page.text.must_include "Comment approved."
+    page.text.must_include "Comment was successfully updated."
     page.text.must_include comments(:comment1).content
   end
 end

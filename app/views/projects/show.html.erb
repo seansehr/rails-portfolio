@@ -3,3 +3,10 @@
 <div class="actions">
   <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "button radius" %>
 </div>
+
+<h3>Comments</h3>
+
+<%= render 'comments/comments' %>
+
+<h4>Post A Comment</h4>
+<%= render 'comments/form' %>
