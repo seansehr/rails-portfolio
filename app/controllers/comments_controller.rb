@@ -5,10 +5,12 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
+  before_filter :load_commentable
+
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = @commentable.comments
   end
 
   # GET /comments/1
@@ -18,34 +20,30 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    @comment = @commentable.comments.new
   end
 
   # GET /comments/1/edit
   def edit
-    @post = Post.find(@comment.post_id) unless @post
   end
 
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @commentable.comments.new(comment_params)
     @comment.author = current_user.email
     @comment.author_email = current_user.email
     @comment.user_ip = request.remote_ip
     @comment.user_agent = request.user_agent
     @comment.referrer = request.referer
-    @comment.post_id = params[:post_id]
     @comment.approved = policy(@comment).publish? ? true : false
-    respond_to do |format|
-      if @comment.save
-        notice = @comment.approved ? 'Comment was successfully created.' : 'Comment was successfully created. It will be published once an editor approves it.'
-        format.html { redirect_to post_path(@comment.post_id), notice: notice }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    if @comment.save
+      notice = @comment.approved ? 'Comment was successfully created.' : 'Comment was successfully created. It will be published once an editor approves it.'
+      redirect_to @commentable, notice: notice
+    else
+      instance_variable_set("@#{@resource.singularize}".to_sym, @commentable)
+      # same as @post = @commentable or @project = @commentable
+      render template: "#{@resource}/show"
     end
   end
 
@@ -53,9 +51,8 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1.json
   def update
     respond_to do |format|
-      notice = params['comment']['approved'] && !@comment.approved ? 'Comment approved.' : 'Comment was successfully updated.'
       if @comment.update(comment_params)
-        format.html { redirect_to post_path(@comment.post_id), notice: notice }
+        format.html { redirect_to @commentable, notice: 'Comment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,12 +66,17 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to post_path(@comment.post_id), notice: 'Comment deleted.' }
+      format.html { redirect_to @commentable, notice: 'Comment deleted.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def load_commentable
+      klass = [Post, Project].detect { |c| params["#{c.name.underscore}_id"]}
+      @commentable = klass.find(params["#{klass.name.underscore}_id"])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])

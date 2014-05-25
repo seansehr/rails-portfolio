@@ -12,6 +12,10 @@ PortfolioRails4::Application.routes.draw do
     resources :comments
   end
 
+  resources :projects do
+    resources :comments
+  end
+
   # put '/posts/:post_id/comment/:id' => 'comments#update'
 
   # Example of regular route:
