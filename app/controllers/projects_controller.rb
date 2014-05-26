@@ -1,4 +1,7 @@
 class ProjectsController < ApplicationController
+  include Pundit
+  protect_from_forgery
+
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def create
@@ -9,7 +12,7 @@ class ProjectsController < ApplicationController
           flash[:notice] = "Project has been created."
           redirect_to @project
         else
-          flash[:alert] = "Project has not been created."
+          flash[:alert] = "Project could not be saved."
           render :new
         end
       end
@@ -56,7 +59,7 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:name, :technologies_used)
+    params.require(:project).permit(*policy(@project || Project).permitted_attributes)
   end
 
   def set_project

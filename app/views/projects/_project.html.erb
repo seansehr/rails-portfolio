@@ -1,1 +1,14 @@
-<li><%= link_to project.name, project %></li>
+<li>
+  <h1 class="project-title"><%= project.name %></h1>
+
+  <ul class="button-group">
+    <% if policy(project).update? %>
+      <li><%= link_to 'Edit', edit_project_path(project), :class => 'tiny button project-edit', remote: true, id: project.id %></li>
+    <% end %>
+    <% if policy(project).delete? %>
+      <li><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'tiny button' %></li>
+    <% end %>
+  </ul>
+
+  <p class="technologies">Technologies used: <%= project.technologies_used %></p>
+</li>
