@@ -1,8 +1,15 @@
-<h2><%= @project.name %></h2>
-<p>Technologies used: <%= @project.technologies_used %>
-<div class="actions">
-  <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "button radius" %>
-</div>
+<h1 class="project-title"><%= @project.name %></h1>
+
+<ul class="button-group">
+  <% if policy(@project).update? %>
+    <li><%= link_to 'Edit', edit_project_path(@project), :class => 'tiny button' %></li>
+  <% end %>
+  <% if policy(@project).delete? %>
+    <li><%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'tiny button' %></li>
+  <% end %>
+</ul>
+
+<p class="technologies">Technologies used: <%= @project.technologies_used %></p>
 
 <h3>Comments</h3>
 
