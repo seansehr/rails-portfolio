@@ -1,4 +1,6 @@
 PortfolioRails4::Application.routes.draw do
+  resources :messages
+
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   resources :posts, :projects
 
@@ -14,6 +16,12 @@ PortfolioRails4::Application.routes.draw do
 
   resources :projects do
     resources :comments
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :posts, :only => [:create]
+    end
   end
 
   # put '/posts/:post_id/comment/:id' => 'comments#update'

@@ -8,6 +8,7 @@ gem "pundit" # User Permissions
 gem 'omniauth-twitter'
 gem 'figaro' # Save Environment Vars
 gem 'carrierwave' # File uploads
+gem 'postmark-mitt' # Service for incoming emails
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,6 +25,7 @@ group :development, :test do
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
   gem 'turn'
+  gem 'letter_opener' # Send emails in developer mode
 end
 
 group :production do
