@@ -8,6 +8,7 @@ gem "pundit" # User Permissions
 gem 'omniauth-twitter'
 gem 'figaro' # Save Environment Vars
 gem 'carrierwave' # File uploads
+gem 'postmark-mitt' # Service for incoming emails
 
 # Gems used only for assets and not required
 # in production environments by default.

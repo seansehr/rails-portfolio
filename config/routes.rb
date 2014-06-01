@@ -18,6 +18,12 @@ PortfolioRails4::Application.routes.draw do
     resources :comments
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :posts, :only => [:create]
+    end
+  end
+
   # put '/posts/:post_id/comment/:id' => 'comments#update'
 
   # Example of regular route:
