@@ -1,7 +1,9 @@
 portfolio:
   name: How meta
   technologies_used: Ruby, Rails, Zurb
+  image: 'test/files/Google-Self-Driving-Car.jpg'
 
 freelance:
   name: Sean Sehr
   technologies_used: Ruby, Rails, Twitter API
+  image: 'test/files/Google-Self-Driving-Car.jpg'

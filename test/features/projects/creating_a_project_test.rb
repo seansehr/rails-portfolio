@@ -4,12 +4,19 @@ feature "As the site owner, I want to add a portfolio item so that I can show of
   scenario "adding a new project" do
     visit projects_path
     click_on "New Project"
-    fill_in "Name", with: "Sean's Portfolio"
-    fill_in "Technologies used", with: "Rails, Ruby, Foundation, HTML5, CSS3"
+    fill_in "Name", with: projects(:portfolio).name
+    fill_in "Technologies used", with: projects(:portfolio).technologies_used
+    # How come the first does not work? cannot attach file, [:with, "a/valid/path"] does not exist
+    # attach_file "Image", with: "#{Rails.root}/test/files/Google-Self-Driving-Car.jpg"
+    attach_file('project_image', "#{Rails.root}/test/files/Google-Self-Driving-Car.jpg")
     click_on "Create Project"
-    page.text.must_include "Project has been created"
-    page.text.must_include "Sean's Portfolio"
-    page.text.must_include "Rails"
+    page.text.must_include projects(:portfolio).name
+    page.text.must_include projects(:portfolio).technologies_used
+    # http://stackoverflow.com/questions/6477051/how-do-i-test-an-image-src-and-alt-value-using-capybara
+    # TODO: find out how to use a fixture, since the fixture creates an actual
+    # image upload it prevents me from using the fixture for this test
+    page.find('#project-image')['src'].must_include "Google-Self-Driving-Car.jpg"
+    # page.must_include projects(:portfolio).image
   end
 
   scenario "new project has invalid data" do
