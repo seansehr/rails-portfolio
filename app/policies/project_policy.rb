@@ -11,6 +11,6 @@ class ProjectPolicy < ApplicationPolicy
   alias_method :delete?, :create?
 
   def permitted_attributes
-    [:name, :technologies_used]
+    [:name, :technologies_used, :image]
   end
 end

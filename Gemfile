@@ -7,6 +7,7 @@ gem 'devise' # User auth
 gem "pundit" # User Permissions
 gem 'omniauth-twitter'
 gem 'figaro' # Save Environment Vars
+gem 'carrierwave' # File uploads
 
 # Gems used only for assets and not required
 # in production environments by default.

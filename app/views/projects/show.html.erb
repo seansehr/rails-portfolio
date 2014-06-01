@@ -11,6 +11,8 @@
 
 <p class="technologies">Technologies used: <%= @project.technologies_used %></p>
 
+<div class="image"><img src="<%= @project.image.url %>" id="project-image" /></div>
+
 <h3>Comments</h3>
 
 <%= render 'comments/comments' %>
