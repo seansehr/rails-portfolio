@@ -9,6 +9,9 @@ gem 'omniauth-twitter'
 gem 'figaro' # Save Environment Vars
 gem 'carrierwave' # File uploads
 gem 'postmark-mitt' # Service for incoming emails
+gem 'sidekiq' # Backround jobs
+gem 'foreman'
+gem 'sinatra', require: false
 
 # Gems used only for assets and not required
 # in production environments by default.

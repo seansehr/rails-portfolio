@@ -1,4 +1,7 @@
 PortfolioRails4::Application.routes.draw do
+  require 'sidekiq/web'
+   mount Sidekiq::Web, at: "/sidekiq"
+
   resources :messages
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
