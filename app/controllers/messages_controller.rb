@@ -8,13 +8,9 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = Message.new(message_params)
-    if @message.send_message
-      flash[:notice] = "Message sent! Thank you for contacting us."
-      redirect_to root_url
-    else
-      render :action => 'new'
-    end
+    MailerWorker.perform_async(message_params)
+    flash[:notice] = "Message sent! Thank you for contacting us."
+    redirect_to root_url
   end
 
   private
