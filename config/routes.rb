@@ -1,4 +1,6 @@
 PortfolioRails4::Application.routes.draw do
+  resources :messages
+
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   resources :posts, :projects
 

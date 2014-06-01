@@ -24,6 +24,7 @@ group :development, :test do
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
   gem 'turn'
+  gem 'letter_opener' # Send emails in developer mode
 end
 
 group :production do
